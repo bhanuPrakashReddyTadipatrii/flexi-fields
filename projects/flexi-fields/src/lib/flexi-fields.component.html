@@ -1,0 +1,91 @@
+<form [formGroup]="form" *ngIf="form">
+    <div *ngFor="let field of fields">
+      <ng-container [ngSwitch]="field.type">
+        <div class="form-group">
+          <label>{{ field.label }} 
+            <span class="required-mark" *ngIf="field.required">*</span></label>
+          <div *ngIf="field.sublabel" class="sublabel">{{ field.sublabel }}</div>
+          <div *ngSwitchCase="'text'">
+            <input [formControlName]="field.name" class="form-control" type="text" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'select'">
+            <select [formControlName]="field.name" class="form-control" placeholder="field.placeholder">
+              <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+          <div *ngSwitchCase="'number'">
+            <input [formControlName]="field.name" class="form-control" type="number" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'radio'">
+            <div *ngFor="let option of field.options" class="form-check">
+              <label class="form-check-label">
+                <input [formControlName]="field.name" class="form-check-input" type="radio" [value]="option.value" />
+                {{ option.label }}
+              </label>
+            </div>
+          </div>
+          <div *ngSwitchCase="'checkbox'">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input [formControlName]="field.name" class="form-check-input" type="checkbox" />
+                {{ field.checkboxLabel || 'Check me' }}
+              </label>
+            </div>
+          </div>
+          <div *ngSwitchCase="'switch'">
+            <div class="form-check form-switch">
+              <label class="form-check-label">
+                <input [formControlName]="field.name" class="form-check-input" type="checkbox" />
+              </label>
+            </div>
+          </div>
+          <div *ngSwitchCase="'date'">
+            <input [formControlName]="field.name" class="form-control" type="date" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'password'">
+            <input [formControlName]="field.name" class="form-control" autocomplete="off" type="password" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'email'">
+            <input [formControlName]="field.name" class="form-control" type="email" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'phone'">
+            <input [formControlName]="field.name" class="form-control" type="tel" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'url'">
+            <input [formControlName]="field.name" class="form-control" type="url" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'color'">
+            <input [formControlName]="field.name" class="form-control" type="color" />
+          </div>
+          <div *ngSwitchCase="'time'">
+            <input [formControlName]="field.name" class="form-control" type="time" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'range'">
+            <input [formControlName]="field.name" class="form-control" type="range" [min]="field.min" [max]="field.max" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'file'">
+            <input [formControlName]="field.name" class="form-control" type="file" />
+          </div>
+          <div *ngSwitchCase="'textarea'">
+            <textarea [formControlName]="field.name" class="form-control" rows="4" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)"></textarea>
+          </div>
+          <div *ngSwitchCase="'week'">
+            <input [formControlName]="field.name" class="form-control" type="week" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'month'">
+            <input [formControlName]="field.name" class="form-control" type="month" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'year'">
+            <input [formControlName]="field.name" class="form-control" type="number" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div *ngSwitchCase="'datetime-local'">
+            <input [formControlName]="field.name" class="form-control" type="datetime-local" placeholder="{{ field.placeholder }}" (blur)="onFieldFocusOut(field)" />
+          </div>
+          <div class="warning-label" *ngIf="field.required && form.controls[field.name].invalid">
+            This field is required.
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </form>
+  

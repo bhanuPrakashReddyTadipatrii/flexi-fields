@@ -1,0 +1,25 @@
+/* dynamic-form.component.scss */
+
+.form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .sublabel {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+  }
+  
+  .required-mark {
+    color: red;
+  }
+  
+  .warning-label {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
